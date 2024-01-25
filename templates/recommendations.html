@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shree Gurudatta Travels - AutoRecs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1 class="logo">Shree Gurudatta Travels</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                    <li><a href="http://127.0.0.1:5000">Vehicle Recommender</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <center>
+        <h1>Top 5 Recommended Cars</h1>
+
+        <table border="5">
+            <thead>
+                <tr>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Image</th> <!-- Add a new column for images -->
+                    <!-- Add more columns if needed for displaying additional car details -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for index, car in recommendations.iterrows() %}
+                <tr>
+                    <td>{{ car['Make'] }}</td>
+                    <td>{{ car['Model'] }}</td>
+                    <td>
+                        <img src="{{ car['ImageURL'] }}" alt="{{ car['Make'] }} {{ car['Model'] }}" width="100">
+                    </td>
+                    <!-- Adjust 'ImageURL' based on the actual column name in your DataFrame containing image URLs or paths -->
+                    <!-- Add more columns with car details -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </center>
+</body>
+
+</html>
+

@@ -1,0 +1,30 @@
+<!-- home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shree Gurudatta Travels - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Include the common header -->
+    {% include 'common-header.html' %}
+</head>
+
+<body>
+    <!-- main content specific to home page -->
+    <main>
+        <h2>Welcome to Shree Gurudatta Travels</h2>
+        <p>Shree Gurudatta Travels is committed to providing exceptional travel experiences.</p>
+        <p>Explore our services and embark on memorable journeys with us.</p>
+    </main>
+
+    <!-- Include your other scripts if needed -->
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+    <script>
+        // Your existing script code
+    </script>
+</body>
+
+</html>

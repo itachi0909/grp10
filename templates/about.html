@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Shree Gurudatta Travels</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Add specific styles for this page if needed */
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1 class="logo">Shree Gurudatta Travels</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                    <li><a href="http://127.0.0.1:5000">Vehicle Recommender</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h2>About Shree Gurudatta Travels</h2>
+        <p>Shree Gurudatta Travels has been a pioneer in the travel industry, providing top-notch services...</p>
+        <p>Our mission is to make travel convenient, comfortable, and memorable for our clients.</p>
+    </main>
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+
+</html>

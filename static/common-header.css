@@ -1,0 +1,56 @@
+/* common-header.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    margin: 0;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+#welcome {
+    margin-right: 15px;
+    color: #FFD700; /* Yellow color for the welcome message */
+}
+
+#logout a {
+    text-decoration: none;
+    color: #FF4500; /* Orange-Red color for the logout link */
+}
+
+#logout a:hover {
+    text-decoration: underline;
+}

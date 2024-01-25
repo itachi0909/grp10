@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shree Gurudatta Travels - Car Preferences</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1 class="logo">Shree Gurudatta Travels</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                    <li><a href="http://127.0.0.1:5000">Vehicle Recommender</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <h1>Car Preferences</h1>
+    <form action="/get_recommendations" method="post" id="carForm">
+        <div class="input-container">
+            <label for="Annual Petroleum Consumption">Annual Petroleum Consumption:</label>
+            <input type="number" name="Annual Petroleum Consumption For Fuel Type1" required>
+            <div class="input-info-icon" onmouseenter="showInfo('infoPopup1')" onmouseleave="hideInfo('infoPopup1')">ℹ️</div>
+            <div class="info-popup left" id="infoPopup1">
+                Estimated yearly fuel usage.            </div>
+        </div>
+
+        <div class="input-container">
+            <label for="Highway Mpg">Highway Kmph:</label>
+            <input type="number" name="Highway Mpg For Fuel Type1" required>
+            <div class="input-info-icon" onmouseenter="showInfo('infoPopup2')" onmouseleave="hideInfo('infoPopup2')">ℹ️</div>
+            <div class="info-popup left" id="infoPopup2">
+                Average fuel on highways (in kmpl).            </div>
+        </div>
+
+        <div class="input-container">
+            <label for="Engine displacement">Engine displacement:</label>
+            <input type="number" name="Engine displacement">
+            <div class="input-info-icon" onmouseenter="showInfo('infoPopup3')" onmouseleave="hideInfo('infoPopup3')">ℹ️</div>
+            <div class="info-popup left" id="infoPopup3">
+                Total engine size (cc).  </div>
+        </div>
+
+        <div class="input-container">
+            <label for="Hatchback luggage volume">Hatchback luggage volume:</label>
+            <input type="number" name="Hatchback luggage volume">
+            <div class="input-info-icon" onmouseenter="showInfo('infoPopup4')" onmouseleave="hideInfo('infoPopup4')">ℹ️</div>
+            <div class="info-popup left" id="infoPopup4">
+                Cargo space in a hatchback (liters).      </div>
+        </div>
+
+        <div class="input-container">
+            <label for="EPA model type index">EPA model type index:</label>
+            <input type="number" name="EPA model type index">
+            <div class="input-info-icon" onmouseenter="showInfo('infoPopup5')" onmouseleave="hideInfo('infoPopup5')">ℹ️</div>
+            <div class="info-popup left" id="infoPopup5">
+                The Environmental Protection Agency numerical value that categorizes a vehicle based on its environmental impact and fuel efficiency.    </div>
+        </div>
+
+        <!-- Add a submit button with the ID 'carFormSubmitBtn' -->
+        <input type="submit" value="Get Recommendations" id="carFormSubmitBtn">
+    </form>
+
+    <script>
+        function showInfo(popupId) {
+            var infoPopup = document.getElementById(popupId);
+            infoPopup.style.display = "block";
+        }
+
+        function hideInfo(popupId) {
+            var infoPopup = document.getElementById(popupId);
+            infoPopup.style.display = "none";
+        }
+
+        document.getElementById('carForm').addEventListener('submit', function (event) {
+            // Handle form submission here
+            event.preventDefault(); // Prevent the default form submission
+            console.log('Form submitted');
+            // Add any additional code you want to run when the form is submitted
+        });
+
+        document.getElementById('carForm').addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                // Trigger form submission on Enter key press
+                document.getElementById('carForm').submit();
+            }
+        });
+
+        // Handle form submission on click
+        document.getElementById('carFormSubmitBtn').addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the default form submission
+            document.getElementById('carForm').submit();
+        });
+    </script>
+
+    <style>
+        /* Additional styles for left-aligned info-popup */
+        .info-popup.left {
+            left: 0;
+        }
+    </style>
+</body>
+
+</html>

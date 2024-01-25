@@ -1,0 +1,17 @@
+<!-- common-header.html -->
+
+<header>
+    <div class="header-content">
+        <h1 class="logo">Shree Gurudatta Travels</h1>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="http://127.0.0.1:5000">Vehicle Recommender</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li id="welcome" style="display: none;"></li>
+                <li id="logout" style="display: none;"><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
