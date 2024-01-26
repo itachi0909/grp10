@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
-from googlesearch import search
+import requests
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -18,7 +18,7 @@ columns_to_drop = [
 
 # Drop specified columns
 data = data.drop(columns_to_drop, axis=1)
-data = data.dropna()  # Add this line to drop NA values
+data = data.dropna()
 
 # Fill missing values in 'Engine displacement' with the mean
 data["Engine displacement"].fillna(data["Engine displacement"].mean(), inplace=True)
@@ -45,16 +45,14 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 model = RandomForestClassifier()
 model.fit(X_train, y_train)
 
-# Function to perform Google search and get image URL for a given query
-def get_image_url(make, model):
-    try:
-        query = f"{make} {model} car"
-        results = list(search(query, stop=1, pause=2))
-        image_url = results[0]
-        print(f"Image URL for {make} {model}: {image_url}")
-        return image_url
-    except Exception as e:
-        print(f"Error in get_image_url: {e}")
+# Function to get image URL from Unsplash
+def get_image_url_from_unsplash(query):
+    access_key = 'VY2QYbIG-3b2lEhgWBod9dpOqFwtohLa1pIi3KEOYMA'
+    url = f'https://api.unsplash.com/photos/random?query={query}&client_id={access_key}'
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()['urls']['regular']
+    else:
         return None
 
 # Define routes
@@ -82,12 +80,11 @@ def get_recommendations():
         predicted_make = model.predict(user_input)[0]
         recommended_cars = data[data['Make'] == predicted_make].sort_values(by=features, ascending=False).head(5)
 
-        # Add image URLs to the DataFrame based on Google search
-        recommended_cars['ImageURL'] = recommended_cars.apply(lambda row: get_image_url(row['Make'], row['Model']), axis=1)
+        # Add image URLs to the DataFrame based on Unsplash
+        recommended_cars['ImageURL'] = recommended_cars.apply(lambda row: get_image_url_from_unsplash(f"{row['Make']} {row['Model']} car"), axis=1)
 
         return render_template('recommendations.html', recommendations=recommended_cars)
     
-    # This print statement was outside the condition
     print(data.isnull().sum())
 
 @app.route('/home')
