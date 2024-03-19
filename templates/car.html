@@ -23,46 +23,26 @@
         </div>
     </header>
 
-    <h1>Car Preferences</h1>
+    <h2>Car Preferences</h2>
     <form action="/get_recommendations" method="post" id="carForm">
         <div class="input-container">
-            <label for="Annual Petroleum Consumption">Annual Petroleum Consumption:(200-900)</label>
-            <input type="number" name="Annual Petroleum Consumption For Fuel Type1" required>
-            <div class="input-info-icon" onmouseenter="showInfo('infoPopup1')" onmouseleave="hideInfo('infoPopup1')">ℹ️</div>
-            <div class="info-popup left" id="infoPopup1">
-                Estimated yearly fuel usage.            </div>
+            <label for="Engine CC">Engine CC:</label>
+            <input type="number" name="Engine CC" step="0.1" min="500" max="8000" required>
         </div>
 
         <div class="input-container">
-            <label for="Highway Mpg">Highway Kmpl:(2-40)</label>
-            <input type="number" name="Highway Mpg For Fuel Type1" required>
-            <div class="input-info-icon" onmouseenter="showInfo('infoPopup2')" onmouseleave="hideInfo('infoPopup2')">ℹ️</div>
-            <div class="info-popup left" id="infoPopup2">
-                Average fuel on highways (in kmpl).            </div>
+            <label for="Power">Power:</label>
+            <input type="number" name="Power" step="0.1" required>
         </div>
 
         <div class="input-container">
-            <label for="Engine displacement">Engine displacement:(800-8000)</label>
-            <input type="number" name="Engine displacement">
-            <div class="input-info-icon" onmouseenter="showInfo('infoPopup3')" onmouseleave="hideInfo('infoPopup3')">ℹ️</div>
-            <div class="info-popup left" id="infoPopup3">
-                Total engine size (cc).  </div>
+            <label for="Seats">Seats:</label>
+            <input type="number" name="Seats" min="1" max="10" required>
         </div>
 
         <div class="input-container">
-            <label for="Hatchback luggage volume">Hatchback luggage volume:(100-500)</label>
-            <input type="number" name="Hatchback luggage volume">
-            <div class="input-info-icon" onmouseenter="showInfo('infoPopup4')" onmouseleave="hideInfo('infoPopup4')">ℹ️</div>
-            <div class="info-popup left" id="infoPopup4">
-                Cargo space in a hatchback (liters).      </div>
-        </div>
-
-        <div class="input-container">
-            <label for="EPA model type index">EPA model type index:(1-10)</label>
-            <input type="number" name="EPA model type index">
-            <div class="input-info-icon" onmouseenter="showInfo('infoPopup5')" onmouseleave="hideInfo('infoPopup5')">ℹ️</div>
-            <div class="info-popup left" id="infoPopup5">
-                The Environmental Protection Agency numerical value that categorizes a vehicle based on its environmental impact and fuel efficiency.    </div>
+            <label for="Mileage Km/L">Mileage Km/L:</label>
+            <input type="number" name="Mileage Km/L" step="0.1" min="2" max="40" required>
         </div>
 
         <!-- Add a submit button with the ID 'carFormSubmitBtn' -->
@@ -70,35 +50,7 @@
     </form>
 
     <script>
-        function showInfo(popupId) {
-            var infoPopup = document.getElementById(popupId);
-            infoPopup.style.display = "block";
-        }
-
-        function hideInfo(popupId) {
-            var infoPopup = document.getElementById(popupId);
-            infoPopup.style.display = "none";
-        }
-
-        document.getElementById('carForm').addEventListener('submit', function (event) {
-            // Handle form submission here
-            event.preventDefault(); // Prevent the default form submission
-            console.log('Form submitted');
-            // Add any additional code you want to run when the form is submitted
-        });
-
-        document.getElementById('carForm').addEventListener('keydown', function (event) {
-            if (event.key === 'Enter') {
-                // Trigger form submission on Enter key press
-                document.getElementById('carForm').submit();
-            }
-        });
-
-        // Handle form submission on click
-        document.getElementById('carFormSubmitBtn').addEventListener('click', function (event) {
-            event.preventDefault(); // Prevent the default form submission
-            document.getElementById('carForm').submit();
-        });
+        // JavaScript code for handling form submission and showing/hiding info popups
     </script>
 
     <style>

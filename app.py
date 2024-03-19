@@ -7,35 +7,33 @@ import requests
 app = Flask(__name__, static_url_path='/static')
 
 # Load and preprocess your data
-data = pd.read_csv("car.csv")
+data = pd.read_csv("new_car_data.csv")
 
 # Columns to drop
 columns_to_drop = [
-    "Guzzler", "Transmission descriptor", "T Charger", "S Charger", "ATV Type", 
-    "Fuel Type2", "Epa Range For Fuel Type2", "Electric motor", "MFR Code", 
-    "c240Dscr", "C240B Dscr", "Start-Stop"
+    # Add columns you want to drop from the new data
 ]
 
 # Drop specified columns
 data = data.drop(columns_to_drop, axis=1)
 data = data.dropna()
 
-# Fill missing values in 'Engine displacement' with the mean
-data["Engine displacement"].fillna(data["Engine displacement"].mean(), inplace=True)
+# Fill missing values if needed
+# Example:
+# data["Engine CC"].fillna(data["Engine CC"].mean(), inplace=True)
 
 # List of features
 features = [
-    "Annual Petroleum Consumption For Fuel Type1",
-    "Highway Mpg For Fuel Type1",
-    "Engine displacement",
-    "Hatchback luggage volume",
-    "EPA model type index"
+    "Engine CC",
+    "Power",
+    "Seats",
+    "Mileage Km/L",
     # Add more features as needed
 ]
 
 # Define X (features) and y (target)
 X = data[features]
-y = data["Make"]
+y = data["Manufacturer"]
 
 # Split data into train and test sets
 # Adjust test_size and random_state as needed
@@ -68,9 +66,6 @@ def get_recommendations():
             user_value = request.form.get(feature)
             user_preferences[feature] = float(user_value) if user_value else None
 
-        # Convert Highway Mpg from kmpl to mpg
-        user_preferences["Highway Mpg For Fuel Type1"] = user_preferences.get("Highway Mpg For Fuel Type1") / 0.425144
-    
         user_input = pd.DataFrame(user_preferences, index=[0])
 
         # Ensure that there are no missing values in the input
@@ -78,10 +73,10 @@ def get_recommendations():
             return "Please fill all fields."
         
         predicted_make = model.predict(user_input)[0]
-        recommended_cars = data[data['Make'] == predicted_make].sort_values(by=features, ascending=False).head(5)
+        recommended_cars = data[data['Manufacturer'] == predicted_make].sort_values(by=features, ascending=False).head(5)
 
         # Add image URLs to the DataFrame based on Unsplash
-        recommended_cars['ImageURL'] = recommended_cars.apply(lambda row: get_image_url_from_unsplash(f"{row['Make']} {row['Model']} car"), axis=1)
+        recommended_cars['ImageURL'] = recommended_cars.apply(lambda row: get_image_url_from_unsplash(f"{row['Name']} {row['Manufacturer']} car"), axis=1)
 
         return render_template('recommendations.html', recommendations=recommended_cars)
     

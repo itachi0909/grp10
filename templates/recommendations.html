@@ -28,8 +28,9 @@
         <table border="5">
             <thead>
                 <tr>
-                    <th>Make</th>
-                    <th>Model</th>
+                    <th>Name</th>
+                    <th>Manufacturer</th>
+                    <th>Fuel Type</th>
                     <th>Image</th> <!-- Add a new column for images -->
                     <!-- Add more columns if needed for displaying additional car details -->
                 </tr>
@@ -37,10 +38,11 @@
             <tbody>
                 {% for index, car in recommendations.iterrows() %}
                 <tr>
-                    <td>{{ car['Make'] }}</td>
-                    <td>{{ car['Model'] }}</td>
+                    <td>{{ car['Name'] }}</td>
+                    <td>{{ car['Manufacturer'] }}</td>
+                    <td>{{car['Fuel_Type']}}</td>
                     <td>
-                        <img src="{{ car['ImageURL'] }}" alt="{{ car['Make'] }} {{ car['Model'] }}" width="100">
+                        <img src="{{ car['ImageURL'] }}" alt="{{ car['Name'] }} {{ car['Manufacturer'] }}" width="100">
                     </td>
                     <!-- Adjust 'ImageURL' based on the actual column name in your DataFrame containing image URLs or paths -->
                     <!-- Add more columns with car details -->
