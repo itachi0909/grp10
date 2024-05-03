@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Shree Gurudatta Travels</title>
+    <!-- Add your CSS file link here -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <style>
         /* Add specific styles for this page if needed */
@@ -30,7 +31,7 @@
 
     <main>
         <h2>Login</h2>
-        <form id="loginForm" onsubmit="validateLogin(event)">
+        <form id="loginForm" action="process_login.php" method="post" onsubmit="validateLogin(event)">
             <label for="username">Username:</label><br>
             <input type="text" id="username" name="username"><br>
 
@@ -44,49 +45,10 @@
         <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign Up</a></p>
     </main>
 
-    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+    <!-- Add your JavaScript file link here -->
+    <script src="scripts.js"></script>
     <script>
-        function validateLogin(event) {
-            event.preventDefault(); // Prevent form submission
-
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            const isAdmin = checkIfAdmin(username, password);
-            const isCustomer = checkIfCustomer(username, password);
-
-            if (isAdmin) {
-                document.getElementById('loginMessage').textContent = 'Logged in as admin.';
-                showWelcomeMessage('admin');
-            } else if (isCustomer) {
-                document.getElementById('loginMessage').textContent = 'Logged in as customer.';
-                showWelcomeMessage('customer');
-            } else {
-                document.getElementById('loginMessage').textContent = 'Invalid username or password.';
-            }
-        }
-
-        function showWelcomeMessage(userType) {
-            const welcomeElement = document.getElementById('welcome');
-            const logoutElement = document.getElementById('logout');
-
-            welcomeElement.textContent = `Welcome ${userType}!`;
-            welcomeElement.style.display = 'inline-block';
-
-            logoutElement.style.display = 'inline-block';
-        }
-
-        function logout() {
-            location.reload();
-        }
-
-        function checkIfAdmin(username, password) {
-            return username === 'admin' && password === 'adminpassword';
-        }
-
-        function checkIfCustomer(username, password) {
-            return username === 'customer' && password === 'customerpassword';
-        }
+        // Your JavaScript functions here
     </script>
 </body>
 

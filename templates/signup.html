@@ -42,29 +42,40 @@
     </main>
 
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>
-    <!-- ... (other HTML remains the same) ... -->
+    <script>
+        function registerUser(event) {
+            event.preventDefault(); // Prevent form submission
 
-<script>
-    function registerUser(event) {
-        event.preventDefault(); // Prevent form submission
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const email = document.getElementById('email').value;
 
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-        const email = document.getElementById('email').value;
-
-        // Simulating successful registration for demonstration purposes
-        const isRegistered = true; // Change this based on actual registration logic
-        
-        if (isRegistered) {
-            document.getElementById('signupMessage').textContent = 'Registration successful!';
-            // Redirect to login page or perform necessary actions
-        } else {
-            document.getElementById('signupMessage').textContent = 'Failed to register. Please try again.';
+            // Send form data to PHP script for processing
+            fetch('process_signup.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                    email: email
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('signupMessage').textContent = 'Registration successful!';
+                    // Redirect to login page or perform necessary actions
+                } else {
+                    document.getElementById('signupMessage').textContent = 'Failed to register. Please try again.';
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
         }
-    }
-</script>
-
-
+    </script>
 </body>
 
 </html>
