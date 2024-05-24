@@ -1,0 +1,58 @@
+body {
+    background-image: url("img/lib.jpg");
+    background-color: #cccccc;
+    background-size: 100em 70em;
+    background-repeat: no-repeat;
+}
+
+.text1
+{
+    background-color: black;
+    color: white;
+}
+
+#side_bar {
+    background-color: whitesmoke;
+    padding: 50px;
+    background-size: 45px 20px;
+}
+.vl {
+    border-left: 6px solid green;
+    height: 500px;
+  }
+
+  .align
+  {
+    padding: 50px;
+    /* padding-left: 50px; */
+    /* padding-right: 80px; */
+    align-content: center;
+    align-items: center;
+    
+  }
+  .align1{
+    text-align: center;
+  }
+  .align2{
+    padding: 50px;
+    /* padding-left: 50px; */
+    /* padding-right: 80px; */
+    align-content: center;
+    align-items: center;
+    padding-left: 15em;
+  }
+  .cards1{
+    align-content: center;
+    position: center;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+  }
+
+  .bg1{
+    background-color: antiquewhite;
+  }
+
+  
