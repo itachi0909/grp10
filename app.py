@@ -61,7 +61,11 @@ def get_recommendations():
             return "Please fill all fields."
 
         predicted_make = model.predict(user_input)[0]
-        recommended_cars = data[data['Manufacturer'] == predicted_make].sort_values(by=features, ascending=False).head(5)
+        recommended_cars = data[data['Manufacturer'] == predicted_make]
+
+        # Randomly sample up to 5 different cars
+        num_recommendations = min(len(recommended_cars), 5)
+        recommended_cars = recommended_cars.sample(n=num_recommendations)
 
         # Save user input and recommended cars to separate Excel files
         try:
