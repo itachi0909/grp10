@@ -232,3 +232,13 @@ border: 1px solid #ccc;
 padding: 10px;
 display: none;
 }
+
+/* Footer styling */
+footer {
+    background-color: #d3d3d3;
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
